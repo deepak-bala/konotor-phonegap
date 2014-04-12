@@ -51,6 +51,15 @@ static int prevUnreadCount = -1;
     if(unreadCountObserver)
     [[NSNotificationCenter defaultCenter] removeObserver:unreadCountObserver];
     
+    int unreadCount = [Konotor getUnreadMessagesCount];
+    [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"Konotor.setUnreadCount(%d)",unreadCount]];
+    
+    if(unreadCount != prevUnreadCount)
+    {
+        prevUnreadCount = unreadCount;
+        [self.webView performSelectorOnMainThread:@selector(stringByEvaluatingJavaScriptFromString:) withObject:@"Konotor.unreadCountChanged()" waitUntilDone:NO];
+    }
+     
     
     unreadCountObserver = [[NSNotificationCenter defaultCenter] addObserverForName:@"KonotorUnreadMessagesCount" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note)
                            {

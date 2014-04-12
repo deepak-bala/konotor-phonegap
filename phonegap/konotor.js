@@ -56,7 +56,7 @@ var Konotor = {
     },
  
     updateUnreadCount:function() {
-        cordova.exec(setUnreadCount, null, "KonotorPhoneGap", "updateUnreadCount", []);
+        cordova.exec(Konotor.setUnreadCount, null, "KonotorPhoneGap", "updateUnreadCount", []);
     },
     
     setUnreadCount:function(unreadCountParameter){
