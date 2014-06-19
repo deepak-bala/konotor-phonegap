@@ -34,7 +34,7 @@ static int prevUnreadCount = -1;
 
 - (void) setWelcomeMessage:(CDVInvokedUrlCommand *)command {
     NSString* message = [command.arguments objectAtIndex:0];
-    [Konotor setWelcomeMessage:message];
+    [Konotor setUnreadWelcomeMessage:message];
 }
 - (void) setUserEmail:(CDVInvokedUrlCommand *)command {
     NSString* email = [command.arguments objectAtIndex:0];
